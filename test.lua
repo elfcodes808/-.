@@ -6,13 +6,13 @@ local Workspace = game:GetService("Workspace")
 local RunService = game:GetService("RunService")
 
 local Window = Rayfield:CreateWindow({
-   Name = "CodeHub",
+   Name = "ShadowZ",
    LoadingTitle = "Loading CodeHub Arsenal Script",
    LoadingSubtitle = "by Fearz",
    ConfigurationSaving = {
       Enabled = true,
-      FolderName = "CodeHub_Config",
-      FileName = "Arsenal_Config"
+      FolderName = "ShadowZ_Config",
+      FileName = "ShadowZ_Config"
    },
    Discord = {
       Enabled = true,
