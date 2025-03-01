@@ -96,7 +96,10 @@ CombatTab:CreateToggle({
     Callback = function(Value)
         AutoPunchEnabled = Value
         if Value then
-            task.spawn(AutoPunch)
+            -- Ensure AutoPunch is run asynchronously without blocking
+            spawn(function()
+                AutoPunch()
+            end)
         end
     end
 })
@@ -119,7 +122,10 @@ MiscTab:CreateToggle({
     Callback = function(Value)
         FPSBoostEnabled = Value
         if Value then
-            task.spawn(FPSBoost)
+            -- Ensure FPSBoost is run asynchronously without blocking
+            spawn(function()
+                FPSBoost()
+            end)
         end
     end
 })
