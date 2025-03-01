@@ -5,7 +5,7 @@ local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
 local Window = Rayfield:CreateWindow({
     Name = "ShadowZ Script Loader",
     LoadingTitle = "Loading UI...",
-    LoadingSubtitle = "Powered by XyPhron Softworks",
+    LoadingSubtitle = "Loading ShadowZ Main Loader",
     ConfigurationSaving = {
         Enabled = false
     },
