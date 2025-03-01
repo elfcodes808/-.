@@ -61,7 +61,7 @@ ScriptsTab:CreateButton({
 ScriptsTab:CreateButton({
     Name = "Hoops Nation 2",
     Callback = function()
-        loadstring(game:HttpGet(""))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/elfcodes808/ShadowZscripts/refs/heads/main/hoop%20nation%202.lua?token=GHSAT0AAAAAAC6LFF27QY4PZZJIZS6PSZKKZ6DO2GQ"))()
         Rayfield:Notify({
             Title = "Successfully loaded!",
             Content = "Hoops Nation 2 script is ready!",
