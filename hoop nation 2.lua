@@ -22,9 +22,9 @@ local Window = Rayfield:CreateWindow({
    KeySystem = false
 })
 
--- Create Tabs
-local MainTab = Window:CreateTab("\ud83c\udfc0 Main", 4483362458)
-local CreditTab = Window:CreateTab("\ud83d\udcdd Credits", 4483362458)
+-- Create Tabs with fixed emoji
+local MainTab = Window:CreateTab("🏀 Main", 4483362458)
+local CreditTab = Window:CreateTab("📝 Credits", 4483362458)
 
 -- Add Label
 MainTab:CreateLabel("Hoop Nation 2 Script V1.0")
