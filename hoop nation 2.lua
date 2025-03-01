@@ -34,20 +34,28 @@ local AutoGreenEnabled = false
 
 -- Auto Green Function
 local function AutoGreen()
-    local args = {
-        true,
-        100
-    }
-    game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Shoot"):FireServer(unpack(args))
+    local ShootEvent = ReplicatedStorage:FindFirstChild("Events") and ReplicatedStorage.Events:FindFirstChild("Shoot")
+    
+    if ShootEvent then
+        local args = {
+            true,
+            100
+        }
+        -- Fire the Shoot event
+        ShootEvent:FireServer(unpack(args))
 
-    task.wait(0.5)  -- Adjust delay as needed
+        task.wait(0.5)  -- Adjust delay as needed
 
-    local argsStop = {
-        false,
-        -0.9786103653907776,
-        false
-    }
-    game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Shoot"):FireServer(unpack(argsStop))
+        local argsStop = {
+            false,
+            -0.9786103653907776,
+            false
+        }
+        -- Fire the Shoot event to stop the action
+        ShootEvent:FireServer(unpack(argsStop))
+    else
+        warn("Shoot event not found in ReplicatedStorage.")
+    end
 end
 
 -- Main Tab Toggle for Auto Green
