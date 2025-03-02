@@ -73,7 +73,7 @@ ScriptsTab:CreateButton({
 ScriptsTab:CreateButton({
     Name = "Boxing Beta Script",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/elfcodes808/ShadowZscripts/refs/heads/main/boxing%20beta.lua?token=GHSAT0AAAAAAC6LFF272O7E6XFHLLWRV42MZ6DO5JQ"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/elfcodes808/ShadowZscripts/refs/heads/main/boxing%20beta.lua?token=GHSAT0AAAAAAC6LFF27QERFPDQIM3HFINQ2Z6DU3LQ"))()
         Rayfield:Notify({
             Title = "Boxing Beta is Loaded!",
             Content = "Callback error might occur every once and a while.",
