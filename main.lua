@@ -82,6 +82,30 @@ ScriptsTab:CreateButton({
     end
 })
 
+ScriptsTab:CreateButton({
+    Name = "Shrimp Game",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/elfcodes808/ShadowZscripts/refs/heads/main/SG"))()
+        Rayfield:Notify({
+            Title = "Successfully loaded!",
+            Content = "Shrimp Game script is ready!",
+            Duration = 5
+        })
+    end
+})
+
+ScriptsTab:CreateButton({
+    Name = "Realistic Basketball",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/elfcodes808/ShadowZscripts/refs/heads/main/RB"))()
+        Rayfield:Notify({
+            Title = "Successfully loaded!",
+            Content = "Realistic Basketball script is ready!",
+            Duration = 5
+        })
+    end
+})
+
 FixesTab:CreateParagraph({
     Title = "FIXES",
     Content = "Fixed callback error"
