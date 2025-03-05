@@ -1,0 +1,34 @@
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
+local moveDistance = 500 -- Moves player 500 studs forward
+
+local Window = Rayfield:CreateWindow({
+    Name = "Shrimp Game GUI",
+    LoadingTitle = "Loading Shrimp Game...",
+    LoadingSubtitle = "By YourName",
+    ConfigurationSaving = {
+        Enabled = false
+    }
+})
+
+-- Main Tab
+local MainTab = Window:CreateTab("Main", 4483362458)
+
+MainTab:CreateButton({
+    Name = "Auto Finish Red Light Green Light",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+        if player and player.Character then
+            local hrp = player.Character:FindFirstChild("HumanoidRootPart")
+            if hrp then
+                hrp.CFrame = hrp.CFrame + hrp.CFrame.LookVector * moveDistance
+            end
+        end
+    end
+})
+
+-- Credits Tab
+local CreditsTab = Window:CreateTab("Credits", 4483362458)
+CreditsTab:CreateParagraph({
+    Title = "Credits",
+    Content = "Thanks to Shadowz for making this script!"
+})
