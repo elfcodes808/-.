@@ -1,0 +1,126 @@
+-- Load Rayfield UI Library
+getgenv().SecureMode = true
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
+
+-- Create the main window
+local window = Rayfield:CreateWindow({
+    Name = "ShadowZ Realistic Basketball",
+    LoadingTitle = "Loading...",
+    LoadingSubtitle = "Loading made by ShadowZ",
+    ConfigurationSaving = {
+        Enabled = true,
+        FolderName = nil,
+        FileName = "ShadowZBasketballSettings"
+    },
+    Discord = {
+        Enabled = false,
+        Invite = "https://discord.gg/yourdiscord", 
+        RememberJoins = true
+    },
+    KeySystem = false,
+    KeySettings = {
+        Key = "YOUR_KEY"
+    }
+})
+
+-- Create tabs in the window
+local mainTab = window:CreateTab("🏀Main", 4483362458)
+local miscTab = window:CreateTab("⚙️ Misc", 4483362458)
+local creditsTab = window:CreateTab("⭐ Credits", 4483362458)
+
+-- Create a boolean variable to track if Auto Green is enabled
+local autoGreenEnabled = false
+
+-- Main Tab: Auto Green Toggle
+local autoGreenToggle = mainTab:CreateToggle({
+    Name = "Auto Green",
+    Default = false,
+    Description = "Automatically greens shots when enabled",
+    Callback = function(state)
+        autoGreenEnabled = state
+    end
+})
+
+-- Main Tab: Fake Lag Toggle
+local fakeLagToggle = mainTab:CreateToggle({
+    Name = "Fake Lag",
+    Default = false,
+    Description = "Appear to lag for others, but not for you.",
+    Callback = function(state)
+        if state then
+            -- Fake Lag Logic: Simulate lag for others but not for you
+            game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("LagTrigger"):FireServer(true)
+        else
+            game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("LagTrigger"):FireServer(false)
+        end
+    end
+})
+
+-- Main Tab: FPS Boost Toggle
+local fpsBoostToggle = miscTab:CreateToggle({
+    Name = "FPS Boost",
+    Default = false,
+    Description = "Boost FPS by adjusting graphics settings.",
+    Callback = function(state)
+        if state then
+            -- FPS Boost Logic (e.g., reducing lighting and shadows)
+            game:GetService("Lighting").GlobalShadows = false
+            game:GetService("Lighting").Ambient = Color3.fromRGB(255, 255, 255)
+        else
+            -- Reset lighting and shadows to default
+            game:GetService("Lighting").GlobalShadows = true
+            game:GetService("Lighting").Ambient = Color3.fromRGB(128, 128, 128)
+        end
+    end
+})
+
+-- Main Tab: Day/Night Dropdown
+local dayNightDropdown = miscTab:CreateDropdown({
+    Name = "Day/Night Cycle",
+    Default = "Day",
+    Options = {"Day", "Night"},
+    Description = "Change the time of day.",
+    Callback = function(selected)
+        if selected == "Day" then
+            game:GetService("Lighting").TimeOfDay = "14:00:00"
+        elseif selected == "Night" then
+            game:GetService("Lighting").TimeOfDay = "00:00:00"
+        end
+    end
+})
+
+-- Credits Tab: Display Credits
+creditsTab:CreateLabel("Made By ShadowZ")
+creditsTab:CreateLabel("Thank you for using this script!")
+
+-- Listen for 'E' key press to trigger Auto Green
+local userInputService = game:GetService("UserInputService")
+
+userInputService.InputBegan:Connect(function(input, gameProcessed)
+    if gameProcessed then return end
+    if input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode == Enum.KeyCode.E then
+        if autoGreenEnabled then
+            -- Triggering the first set of arguments for Auto Green shot
+            local args1 = {
+                [1] = true,
+                [2] = 100,
+                [4] = false,
+                [5] = false,
+                [6] = 0
+            }
+            game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Shoot"):FireServer(unpack(args1))
+
+            -- Triggering the second set of arguments for Auto Green shot
+            local args2 = {
+                [1] = false,
+                [2] = -1.0280378532409669,
+                [3] = true,
+                [6] = 0
+            }
+            game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Shoot"):FireServer(unpack(args2))
+        end
+    end
+end)
+
+-- Show the Rayfield window
+window:Render()
