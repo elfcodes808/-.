@@ -1,0 +1,198 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+    Name = "ShadowZ Hub",
+    LoadingTitle = "Loading ShadowZ Hub...",
+    LoadingSubtitle = "Script by ShadowZ",
+    ConfigurationSaving = {
+        Enabled = false,
+    }
+})
+
+local MainTab = Window:CreateTab("Main", 4483362458)
+local CreditsTab = Window:CreateTab("Credits", 4483362458)
+
+local autoHitEnabled = false
+local autoOpenCrateEnabled = false
+local autoRedeemRewardsEnabled = false
+local autoClaimDailyRewardsEnabled = false
+local autoUpgradeStrengthEnabled = false
+local autoUpgradeAccuracyEnabled = false
+local autoUpgradeSpeedEnabled = false
+local autoUpgradeComboEnabled = false
+
+local function autoHit()
+    while autoHitEnabled do
+        local args = {
+            [1] = 100
+        }
+        game:GetService("ReplicatedStorage"):WaitForChild("RF"):WaitForChild("Launch_Ball"):InvokeServer(unpack(args))
+        task.wait(2)
+    end
+end
+
+local function autoOpenCrate()
+    while autoOpenCrateEnabled do
+        local crates = {"General 2", "General 1"}
+        for _, crate in ipairs(crates) do
+            local args = {
+                [1] = crate
+            }
+            game:GetService("ReplicatedStorage"):WaitForChild("RF"):WaitForChild("Open_Crate"):InvokeServer(unpack(args))
+        end
+        task.wait(2)
+    end
+end
+
+local function autoRedeemRewards()
+    while autoRedeemRewardsEnabled do
+        game:GetService("ReplicatedStorage"):WaitForChild("RF"):WaitForChild("Redeem_Free_Reward"):InvokeServer()
+        game:GetService("ReplicatedStorage"):WaitForChild("RF"):WaitForChild("Redeem_Free_Reward"):InvokeServer()
+        task.wait(2)
+    end
+end
+
+local function autoClaimDailyRewards()
+    while autoClaimDailyRewardsEnabled do
+        local args = {1}
+        game:GetService("ReplicatedStorage"):WaitForChild("RF"):WaitForChild("Claim_Daily_Reward"):InvokeServer(unpack(args))
+        task.wait(2)
+    end
+end
+
+local function upgradeStrength()
+    while autoUpgradeStrengthEnabled do
+        local args = {
+            [1] = "Strength",
+            [2] = 1
+        }
+        game:GetService("ReplicatedStorage"):WaitForChild("RF"):WaitForChild("Upgrade_Attribute"):InvokeServer(unpack(args))
+        task.wait(2)
+    end
+end
+
+local function upgradeAccuracy()
+    while autoUpgradeAccuracyEnabled do
+        local args = {
+            [1] = "Accuracy",
+            [2] = 1
+        }
+        game:GetService("ReplicatedStorage"):WaitForChild("RF"):WaitForChild("Upgrade_Attribute"):InvokeServer(unpack(args))
+        task.wait(2)
+    end
+end
+
+local function upgradeSpeed()
+    while autoUpgradeSpeedEnabled do
+        local args = {
+            [1] = "Speed",
+            [2] = 1
+        }
+        game:GetService("ReplicatedStorage"):WaitForChild("RF"):WaitForChild("Upgrade_Attribute"):InvokeServer(unpack(args))
+        task.wait(2)
+    end
+end
+
+local function upgradeCombo()
+    while autoUpgradeComboEnabled do
+        local stats = {"Strength", "Accuracy", "Speed"}
+        for _, stat in ipairs(stats) do
+            local args = {
+                [1] = stat,
+                [2] = 1
+            }
+            game:GetService("ReplicatedStorage"):WaitForChild("RF"):WaitForChild("Upgrade_Attribute"):InvokeServer(unpack(args))
+        end
+        task.wait(3)
+    end
+end
+
+MainTab:CreateToggle({
+    Name = "Auto Hit",
+    CurrentValue = false,
+    Callback = function(Value)
+        autoHitEnabled = Value
+        if autoHitEnabled then
+            task.spawn(autoHit)
+        end
+    end
+})
+
+MainTab:CreateToggle({
+    Name = "Auto Open Crate",
+    CurrentValue = false,
+    Callback = function(Value)
+        autoOpenCrateEnabled = Value
+        if autoOpenCrateEnabled then
+            task.spawn(autoOpenCrate)
+        end
+    end
+})
+
+MainTab:CreateToggle({
+    Name = "Auto Redeem Rewards",
+    CurrentValue = false,
+    Callback = function(Value)
+        autoRedeemRewardsEnabled = Value
+        if autoRedeemRewardsEnabled then
+            task.spawn(autoRedeemRewards)
+        end
+    end
+})
+
+MainTab:CreateToggle({
+    Name = "Auto Claim Daily Rewards",
+    CurrentValue = false,
+    Callback = function(Value)
+        autoClaimDailyRewardsEnabled = Value
+        if autoClaimDailyRewardsEnabled then
+            task.spawn(autoClaimDailyRewards)
+        end
+    end
+})
+
+MainTab:CreateToggle({
+    Name = "Auto Upgrade Strength (2 second delay)",
+    CurrentValue = false,
+    Callback = function(Value)
+        autoUpgradeStrengthEnabled = Value
+        if autoUpgradeStrengthEnabled then
+            task.spawn(upgradeStrength)
+        end
+    end
+})
+
+MainTab:CreateToggle({
+    Name = "Auto Upgrade Accuracy (2 second delay)",
+    CurrentValue = false,
+    Callback = function(Value)
+        autoUpgradeAccuracyEnabled = Value
+        if autoUpgradeAccuracyEnabled then
+            task.spawn(upgradeAccuracy)
+        end
+    end
+})
+
+MainTab:CreateToggle({
+    Name = "Auto Upgrade Speed (2 second delay)",
+    CurrentValue = false,
+    Callback = function(Value)
+        autoUpgradeSpeedEnabled = Value
+        if autoUpgradeSpeedEnabled then
+            task.spawn(upgradeSpeed)
+        end
+    end
+})
+
+MainTab:CreateToggle({
+    Name = "Auto Upgrade Combo (Strength, Accuracy, Speed) (3 second delay)",
+    CurrentValue = false,
+    Callback = function(Value)
+        autoUpgradeComboEnabled = Value
+        if autoUpgradeComboEnabled then
+            task.spawn(upgradeCombo)
+        end
+    end
+})
+
+CreditsTab:CreateLabel("Script made by ShadowZ")
