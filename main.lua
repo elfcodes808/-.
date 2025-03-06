@@ -106,6 +106,19 @@ ScriptsTab:CreateButton({
     end
 })
 
+-- Add Fisch Script Button
+ScriptsTab:CreateButton({
+    Name = "Fisch Script",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/elfcodes808/-/refs/heads/main/FC"))()  -- Fisch script URL
+        Rayfield:Notify({
+            Title = "Successfully loaded!",
+            Content = "Fisch script is ready!",
+            Duration = 5
+        })
+    end
+})
+
 FixesTab:CreateParagraph({
     Title = "FIXES",
     Content = "Fixed callback error"
