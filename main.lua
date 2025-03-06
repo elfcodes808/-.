@@ -25,12 +25,10 @@ local Window = Rayfield:CreateWindow({
 local keyExpirationTime = 5  -- 5 seconds until the key expires
 local keyStartTime = tick()  -- Record the start time when the script starts
 
--- Function to check if the key has expired
 local function isKeyExpired()
     return tick() - keyStartTime >= keyExpirationTime
 end
 
--- Wait for the key input and check if it has expired
 if isKeyExpired() then
     Rayfield:Notify({
         Title = "Key Expired",
@@ -61,7 +59,7 @@ ScriptsTab:CreateButton({
 ScriptsTab:CreateButton({
     Name = "Hoops Nation 2",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/elfcodes808/ShadowZscripts/refs/heads/main/hoop%20nation%202.lua?token=GHSAT0AAAAAAC6LFF27ZMWU7BY2GXYIR7J6Z6DU2QQ"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/elfcodes808/ShadowZscripts/refs/heads/main/hoop%20nation%202.lua"))()
         Rayfield:Notify({
             Title = "Successfully loaded!",
             Content = "Hoops Nation 2 script is ready!",
@@ -73,7 +71,7 @@ ScriptsTab:CreateButton({
 ScriptsTab:CreateButton({
     Name = "Boxing Beta Script",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/elfcodes808/ShadowZscripts/refs/heads/main/boxing%20beta.lua?token=GHSAT0AAAAAAC6LFF27QERFPDQIM3HFINQ2Z6DU3LQ"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/elfcodes808/ShadowZscripts/refs/heads/main/boxing%20beta.lua"))()
         Rayfield:Notify({
             Title = "Boxing Beta is Loaded!",
             Content = "Callback error might occur every once and a while.",
@@ -106,14 +104,25 @@ ScriptsTab:CreateButton({
     end
 })
 
--- Add Fisch Script Button
 ScriptsTab:CreateButton({
     Name = "Fisch Script",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/elfcodes808/-./refs/heads/main/FC"))()  -- Fisch script URL
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/elfcodes808/-./refs/heads/main/FC"))()
         Rayfield:Notify({
             Title = "Successfully loaded!",
             Content = "Fisch script is ready!",
+            Duration = 5
+        })
+    end
+})
+
+ScriptsTab:CreateButton({
+    Name = "Homerun Simulator",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/elfcodes808/-./refs/heads/main/HS"))()
+        Rayfield:Notify({
+            Title = "Successfully loaded!",
+            Content = "Homerun Simulator script is ready!",
             Duration = 5
         })
     end
