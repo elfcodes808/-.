@@ -21,23 +21,6 @@ local Window = Rayfield:CreateWindow({
     }
 })
 
--- Key expiration functionality
-local keyExpirationTime = 5  -- 5 seconds until the key expires
-local keyStartTime = tick()  -- Record the start time when the script starts
-
-local function isKeyExpired()
-    return tick() - keyStartTime >= keyExpirationTime
-end
-
-if isKeyExpired() then
-    Rayfield:Notify({
-        Title = "Key Expired",
-        Content = "Your key has expired. Please enter a new one.",
-        Duration = 5
-    })
-    return
-end
-
 -- Scripts Tab
 local ScriptsTab = Window:CreateTab("Scripts", 4483362458)
 local CreditsTab = Window:CreateTab("Credits", 4483362458)
@@ -59,7 +42,7 @@ ScriptsTab:CreateButton({
 ScriptsTab:CreateButton({
     Name = "Hoops Nation 2",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/elfcodes808/ShadowZscripts/refs/heads/main/hoop%20nation%202.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/elfcodes808/-./refs/heads/main/HN"))()
         Rayfield:Notify({
             Title = "Successfully loaded!",
             Content = "Hoops Nation 2 script is ready!",
@@ -71,10 +54,10 @@ ScriptsTab:CreateButton({
 ScriptsTab:CreateButton({
     Name = "Boxing Beta Script",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/elfcodes808/ShadowZscripts/refs/heads/main/boxing%20beta.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/elfcodes808/-./refs/heads/main/BE"))()
         Rayfield:Notify({
             Title = "Boxing Beta is Loaded!",
-            Content = "Callback error might occur every once and a while.",
+            Content = "Callback error might occur every once in a while.",
             Duration = 5
         })
     end
