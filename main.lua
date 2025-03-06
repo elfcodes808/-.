@@ -110,7 +110,7 @@ ScriptsTab:CreateButton({
 ScriptsTab:CreateButton({
     Name = "Fisch Script",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/elfcodes808/-/refs/heads/main/FC"))()  -- Fisch script URL
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/elfcodes808/-./refs/heads/main/FC"))()  -- Fisch script URL
         Rayfield:Notify({
             Title = "Successfully loaded!",
             Content = "Fisch script is ready!",
