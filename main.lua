@@ -2,6 +2,7 @@
 getgenv().SecureMode = true
 local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
 
+-- Create Window
 local Window = Rayfield:CreateWindow({
     Name = "ShadowZ Script Loader",
     LoadingTitle = "Loading UI...",
@@ -21,12 +22,18 @@ local Window = Rayfield:CreateWindow({
     }
 })
 
+-- Check if the Window was created successfully
+if not Window then
+    error("Failed to create Rayfield window!")
+end
+
 -- Scripts Tab
 local ScriptsTab = Window:CreateTab("Scripts", 4483362458)
 local CreditsTab = Window:CreateTab("Credits", 4483362458)
 local FixesTab = Window:CreateTab("Fixes", 4483362458)
 local InfoTab = Window:CreateTab("Information", 4483362458)
 
+-- Script buttons
 ScriptsTab:CreateButton({
     Name = "Siege Script",
     Callback = function()
@@ -111,16 +118,32 @@ ScriptsTab:CreateButton({
     end
 })
 
+-- New button added for your script link
+ScriptsTab:CreateButton({
+    Name = "R Script",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/elfcodes808/-./refs/heads/main/R"))()
+        Rayfield:Notify({
+            Title = "Successfully loaded!",
+            Content = "R script is ready!",
+            Duration = 5
+        })
+    end
+})
+
+-- Fixes Tab
 FixesTab:CreateParagraph({
     Title = "FIXES",
     Content = "Fixed callback error"
 })
 
+-- Credits Tab
 CreditsTab:CreateParagraph({
     Title = "Special Thanks",
     Content = "Developed by kadencodes"
 })
 
+-- Information Tab
 InfoTab:CreateButton({
     Name = "Info window",
     Callback = function()
