@@ -120,7 +120,7 @@ ScriptsTab:CreateButton({
 
 -- New button added for Basketball Legends
 ScriptsTab:CreateButton({
-    Name = "Basketball Legends 🏀",
+    Name = "Basketball Legends",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/elfcodes808/-./refs/heads/main/BL"))()
         Rayfield:Notify({
