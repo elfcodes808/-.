@@ -118,7 +118,20 @@ ScriptsTab:CreateButton({
     end
 })
 
--- New button added for your script link
+-- New button added for Basketball Legends
+ScriptsTab:CreateButton({
+    Name = "Basketball Legends 🏀",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/elfcodes808/-./refs/heads/main/BL"))()
+        Rayfield:Notify({
+            Title = "Successfully loaded!",
+            Content = "Basketball Legends script is ready!",
+            Duration = 5
+        })
+    end
+})
+
+-- New button added for R Script
 ScriptsTab:CreateButton({
     Name = "R Script",
     Callback = function()
