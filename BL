@@ -1,0 +1,106 @@
+-- Load the Ray Field GUI Library
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
+
+-- Services
+local UserInputService = game:GetService("UserInputService")
+local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
+local RunService = game:GetService("RunService")
+
+-- Variables
+local autoGreenEnabled = false
+local autoGuardEnabled = false
+local LocalPlayer = Players.LocalPlayer
+local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+-- Create Rayfield Window
+local Window = Rayfield:CreateWindow({ Name = "Basketball Legends", LoadingTitle = "Loading Basketball Legends...", LoadingSubtitle = "by ShadowZ 😎", IntroEnabled = false })
+
+-- Create Tabs
+local MainTab = Window:CreateTab("Main 🏀", 4483362458)
+local CreditsTab = Window:CreateTab("Credits 💎", 4483362458)
+
+-- Main Tab: Auto Green Toggle
+MainTab:CreateToggle({
+    Name = "Auto Green 🎯",
+    CurrentValue = false,
+    Flag = "autoGreenToggle",
+    Callback = function(value)
+        autoGreenEnabled = value
+    end
+})
+
+-- Main Tab: Auto Guard Toggle
+MainTab:CreateToggle({
+    Name = "Auto Guard 🛡️",
+    CurrentValue = false,
+    Flag = "autoGuardToggle",
+    Callback = function(value)
+        autoGuardEnabled = value
+    end
+})
+
+-- Function to simulate pressing and holding the E key for 340ms
+local function holdEKey()
+    if not autoGreenEnabled then return end  -- Ensure Auto Green is enabled
+
+    local startTime = tick()
+    local keyPressDuration = 0.325  -- 340ms
+
+    -- Simulate holding the E key for 340ms
+    while tick() - startTime < keyPressDuration do
+        -- Continuously simulate holding the key down
+    end
+
+    -- If Auto Green is enabled, activate it
+    if autoGreenEnabled then
+        print("Auto Green Activated")
+        -- Implement Auto Green logic here
+    end
+end
+
+-- Function to follow the closest player
+local function followClosestPlayer()
+    if not autoGuardEnabled then return end
+
+    local closestPlayer = nil
+    local shortestDistance = math.huge  -- Set to a large number initially
+
+    -- Find the closest player
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+            local distance = (player.Character.HumanoidRootPart.Position - LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+            if distance < shortestDistance then
+                shortestDistance = distance
+                closestPlayer = player
+            end
+        end
+    end
+
+    -- Make the LocalPlayer walk towards the closest player's head
+    if closestPlayer then
+        local targetHeadPosition = closestPlayer.Character:FindFirstChild("Head").Position
+        local direction = (targetHeadPosition - character.HumanoidRootPart.Position).unit
+        humanoid:MoveTo(targetHeadPosition - direction * 2)  -- Keep a slight distance from the player
+    end
+end
+
+-- Listen for the E key press
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+    if gameProcessed then return end
+    if input.KeyCode == Enum.KeyCode.E and autoGreenEnabled then  -- Trigger only if Auto Green is enabled
+        holdEKey()
+    end
+end)
+
+-- Continuously check for the closest player to follow
+RunService.Heartbeat:Connect(function()
+    followClosestPlayer()
+end)
+
+-- Credits Tab: Display Credits Information
+CreditsTab:CreateSection("💎 Made by ShadowZ 💎")
+CreditsTab:CreateLabel("Developed by Shadow 👑")
+
+print("🔥 ShadowZ Hub for Basketball Legends Loaded Successfully!")
